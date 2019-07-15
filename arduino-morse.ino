@@ -8,47 +8,59 @@
  * Impliment a web app to generate morse code for Arduino.
  */
 
+int morseled = 13; // The PIN where the LED is attached. (13 is built-in so using that).
+int dittime = 200; // The amount of time you want your dit (-) to show on the LED.
+int dahtime = 1000; // The amount of time you want your dah (_) to show on the LED.
+int silencetime = 2000; // The amount of time you want the LED to be turned off after a letter.
+int longsilencetime = 4000; // The amount of time you want the LED to be turned off after a word has been completed (/).
+
 void setup() {
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(morseled, OUTPUT);
 }
 
 void dit(){ // function for dit
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(100);
-  digitalWrite(LED_BUILTIN, LOW);
-  delay(100);
+  digitalWrite(morseled, HIGH);
+  delay(dittime);
+  digitalWrite(morseled, LOW);
+  delay(dittime);
 }
 
 void dah(){
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(500);
-  digitalWrite(LED_BUILTIN, LOW);
-  delay(100);
+  digitalWrite(morseled, HIGH);
+  delay(dahtime);
+  digitalWrite(morseled, LOW);
+  delay(dittime);
 }
 
 void silence(){
-  delay(1000);
+  delay(silencetime);
 }
 
 void longsilence(){
-  delay(2000);
+  delay(longsilencetime);
 }
 
 void loop() {
+
+  // Sample Morse Code for now is "Fuck you". Yeah... I am not kidding.
+  
   dit();
   dit();
   dah();
   dit();
   silence();
+  
   dit();
   dit();
   dah();
   silence();
+  
   dah();
   dit();
   dah();
   dit();
   silence();
+  
   dah();
   dit();
   dah();
@@ -59,10 +71,12 @@ void loop() {
   dah();
   dah();
   silence();
+  
   dah();
   dah();
   dah();
   silence();
+  
   dit();
   dit();
   dah();
